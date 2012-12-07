@@ -3,8 +3,9 @@ var LocalStorageStore = function(successCallback, errorCallback) {
     this.findByName = function(searchKey, callback) {
         var employees = JSON.parse(window.localStorage.getItem("employees"));
         var results = employees.filter(function(element) {
-            var fullName = element.firstName + " " + element.lastName;
-            return fullName.toLowerCase().indexOf(searchKey.toLowerCase()) > -1;
+            //var fullName = element.firstName + " " + element.lastName;
+            //return fullName.toLowerCase().indexOf(searchKey.toLowerCase()) > -1;
+			return JSON.stringify(element).toLowerCase().indexOf(searchKey.toLowerCase()) > -1;
         });
         callLater(callback, results);
     }
@@ -26,13 +27,16 @@ var LocalStorageStore = function(successCallback, errorCallback) {
     // that use async data access APIs
     var callLater = function(callback, data) {
         if (callback) {
-            setTimeout(function() {
-                callback(data);
-            });
+            setTimeout(function() { callback(data); });
         }
     }
 
     var employees = [
+		{"id": 1, "firstName": "Digicel Credit", "lastName": "ddtu", "title":"Topup", "managerId": 0, "city":"JM", "cellPhone":"", "officePhone":"", "email":""},
+		{"id": 2, "firstName": "Lime Credit", "lastName": "ldtu", "title":"Topup", "managerId": 0, "city":"JM", "cellPhone":"", "officePhone":"", "email":""},
+		{"id": 3, "firstName": "Flow Bill", "lastName": "flow", "title":"Payment", "managerId": 0, "city":"JM", "cellPhone":"", "officePhone":"", "email":""},
+    ];
+    var employees2 = [
             {"id": 1, "firstName": "Ryan", "lastName": "Howard", "title":"Vice President, North East", "managerId": 0, "city":"New York, NY", "cellPhone":"212-999-8888", "officePhone":"212-999-8887", "email":"ryan@dundermifflin.com"},
             {"id": 2, "firstName": "Michael", "lastName": "Scott", "title":"Regional Manager", "managerId": 1, "city":"Scranton, PA", "cellPhone":"570-865-2536", "officePhone":"570-123-4567", "email":"michael@dundermifflin.com"},
             {"id": 3, "firstName": "Dwight", "lastName": "Schrute", "title":"Assistant Regional Manager", "managerId": 2, "city":"Scranton, PA", "cellPhone":"570-865-1158", "officePhone":"570-843-8963", "email":"dwight@dundermifflin.com"},
@@ -52,6 +56,5 @@ var LocalStorageStore = function(successCallback, errorCallback) {
 
     window.localStorage.setItem("employees", JSON.stringify(employees));
 
-    callLater(successCallback);
-
+    callLater(successCallback, this);
 }

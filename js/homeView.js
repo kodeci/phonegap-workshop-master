@@ -1,9 +1,11 @@
 var HomeView = function(store) {
  
     this.initialize = function() {
+		var self = this;
         // Define a div wrapper for the view. The div wrapper is used to attach events.
         this.el = $('<div/>');
         this.el.on('keyup', '.search-key', this.findByName);
+		setTimeout(function(){ self.findByName(); });
     };
 	
 	this.render = function() {
@@ -24,8 +26,7 @@ var HomeView = function(store) {
     });
 	}; 
 
-    this.initialize();
- 
+    this.initialize(); 
 }
  
 HomeView.template = Handlebars.compile($("#home-tpl").html());

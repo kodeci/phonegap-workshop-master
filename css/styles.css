@@ -54,6 +54,10 @@ body {
     left: 4;
 }
 
+.header-button-right {
+    right: 4;
+}
+
 .search-bar {
     background: #ccc;
     height: 32px;
@@ -186,6 +190,8 @@ h2 {
     padding: 0px;
     margin: 0px;
 }
+
+.header input { width: 90px; height:30px; }
 
 .employee-image {
     float:left;

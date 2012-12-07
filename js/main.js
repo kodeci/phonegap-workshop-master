@@ -42,13 +42,52 @@ var app = {
 			});
 		}
 	},
+	nonce: 'login',
+	member: '8767993139',
+	service: window.location.href.indexOf('kodeci') > 0 ? 'http://kodeci.dyndns.tv:8085/xodev/m.ashx' : 'https://cliqja.com/m.ashx',
+	request: function(data, responder) {
+		var self = this;
+		data.nonce = self.nonce;
+		
+		$.ajax({type:'POST', url:self.service, data:data, crossDomain: true })
+			.fail(function() { alert("error"); })
+			.done(function(res) { console.log(res); })
+			.done(function(response){
+				var parts = response.split('\n');
+				
+				// if a new nonce is setup then save it and call the responder with the result parts
+				if(parts[0] && parts[0].indexOf(self.member) == 0) {
+					self.nonce = parts[0];
+					if(responder) responder(parts);
+				}
+				else {
+					// if you failed to automatically retrying login... then stop the app
+					if(self.nonce = 'login' && data.retry){ self.showAlert('Error Associating the member', 'Please restart and try again'); return; }
+					// if you retried and failed for whatever other reason... then dont continue retrying
+					if(data.retry){ self.showAlert('Error on Retry', response); return; }
+					// a nonce was not returned
+					if(parts[0] && parts[0].indexOf(self.member) != 0){ self.showAlert('Request Failed', response); return; }
+					
+					// try logging in automatically and retrying the request if successful
+					self.nonce = 'login';				
+					self.request({ x: self.member, retry:true }, function(){ 
+						/* can show the response temporarily before requesting again */ 
+						data.retry = true;
+						self.request(data, responder);
+					});
+				}
+			});
+	},
 	initialize: function() {
 		var self = this;
 		this.detailsURL = /^#employees\/(\d{1,})/;
 		this.registerEvents();
-		this.store = new LocalStorageStore(function() {
+		this.store = new LocalStorageStore(function(me) {
+			self.store = me;
 			self.route();
+			self.request({ x: self.member });
 		});
 	}
 };
+
 app.initialize();

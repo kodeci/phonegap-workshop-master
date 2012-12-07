@@ -2,28 +2,36 @@
 	<head>
 		<link href="css/styles.css" rel="stylesheet" />
 		<script src="css/source-sans-pro.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 	</head>
 <body>
-
 <script id="home-tpl" type="text/x-handlebars-template">
-    <div class='header'><h1>TopupApp :)</h1></div>
+    <div class='header'>
+		<h1>
+		TopupApp <input class="member" type="tel" placeholder="member" /> <input class="pin" type="password" placeholder="pin" />
+		</h1>
+	</div>
     <div class='search-bar'><input class='search-key' type="search"/></div>
     <div class="scroll"><ul class='employee-list'></ul></div>
 </script>
 
 <script id="employee-li-tpl" type="text/x-handlebars-template">
     {{#.}}
-    <li><a href="#employees/{{this.id}}">{{this.firstName}} {{this.lastName}}<br/>{{this.title}}</a></li>
+    <li><a href="#employees/{{this.id}}">{{firstName}} {{this.lastName}}<br/>{{this.title}}</a></li>
     {{/.}}
 </script>
 
 <script id="employee-tpl" type="text/x-handlebars-template">
-    <div class='header'><a href='#' class="button header-button header-button-left">Back</a><h1>Details</h1></div>
+    <div class='header'>
+		<a href='#' class="button header-button header-button-left">Back</a>
+		<h1>Details</h1>
+		<a href='javascript:return false;' class="button header-button header-button-right kGo">Go</a>
+	</div>
     <div class='details'>
-        <img class='employee-image' src='img/{{firstName}}_{{lastName}}.jpg' />
-        <h1>{{firstName}} {{lastName}}</h1>
+        <!-- <img class='employee-image' src='img/{{firstName}}_{{lastName}}.jpg' /> -->
+        <h1>{{firstName}}</h1>
         <h2>{{title}}</h2>
-        <span class="location"></span>
+        <!-- <span class="location"></span> -->
         <ul>
             <li><a href="tel:{{officePhone}}">Call Office<br/>{{officePhone}}</a></li>
             <li><a href="tel:{{cellPhone}}">Call Cell<br/>{{cellPhone}}</a></li>
