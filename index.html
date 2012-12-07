@@ -3,7 +3,7 @@
 		<link href="css/styles.css" rel="stylesheet" />
 		<script src="css/source-sans-pro.js"></script>
 	</head>
-<body style="width:600px;">
+<body>
 
 <script id="home-tpl" type="text/x-handlebars-template">
     <div class='header'><h1>TopupApp :)</h1></div>
@@ -17,12 +17,28 @@
     {{/.}}
 </script>
 
+<script id="employee-tpl" type="text/x-handlebars-template">
+    <div class='header'><a href='#' class="button header-button header-button-left">Back</a><h1>Details</h1></div>
+    <div class='details'>
+        <img class='employee-image' src='img/{{firstName}}_{{lastName}}.jpg' />
+        <h1>{{firstName}} {{lastName}}</h1>
+        <h2>{{title}}</h2>
+        <span class="location"></span>
+        <ul>
+            <li><a href="tel:{{officePhone}}">Call Office<br/>{{officePhone}}</a></li>
+            <li><a href="tel:{{cellPhone}}">Call Cell<br/>{{cellPhone}}</a></li>
+            <li><a href="sms:{{cellPhone}}">SMS<br/>{{cellPhone}}</a></li>
+        </ul>
+    </div>
+</script>
+
 <script src="phonegap.js"></script>
 <script src="lib/jquery-1.8.2.min.js"></script>
 <script src="lib/handlebars.js"></script>
 <script src="lib/iscroll.js"></script>
 <script src="js/storage/ls-store.js"></script>
 <script src="js/homeView.js"></script>
+<script src="js/employeeView.js"></script>
 <script src="js/main.js"></script>
 
 </body>
