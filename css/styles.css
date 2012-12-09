@@ -191,7 +191,7 @@ h2 {
     margin: 0px;
 }
 
-.header input { width: 90px; height:30px; }
+.header input { width: 105px; height:30px; }
 
 .employee-image {
     float:left;
@@ -209,3 +209,7 @@ h2 {
     left: 0px;
     right: 0px;
 }
+
+.editable input { display:none; }
+.editable.edit-mode input { display: inherit; }
+.editable.edit-mode span { display: none; }

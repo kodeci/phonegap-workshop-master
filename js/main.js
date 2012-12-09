@@ -1,4 +1,8 @@
 var app = {
+    showFailure: function (message, title) {
+		setTimeout(function(){ app.showAlert(message, title); });
+		return false;
+	},
     showAlert: function (message, title) {
         if (navigator.notification) {
             navigator.notification.alert(message, null, title, 'OK');
@@ -44,6 +48,7 @@ var app = {
 	},
 	nonce: 'login',
 	member: '8767993139',
+	pin:'',
 	service: window.location.href.indexOf('kodeci') > 0 ? 'http://kodeci.dyndns.tv:8085/xodev/m.ashx' : 'https://cliqja.com/m.ashx',
 	request: function(data, responder) {
 		var self = this;
@@ -54,19 +59,23 @@ var app = {
 			.done(function(res) { console.log(res); })
 			.done(function(response){
 				var parts = response.split('\n');
+				// the new nonce should be the first item... remove it
+				var newNonce = parts.shift();
 				
 				// if a new nonce is setup then save it and call the responder with the result parts
-				if(parts[0] && parts[0].indexOf(self.member) == 0) {
-					self.nonce = parts[0];
+				if(newNonce && newNonce.indexOf(self.member) == 0) {
+					self.nonce = newNonce;
 					if(responder) responder(parts);
 				}
 				else {
 					// if you failed to automatically retrying login... then stop the app
-					if(self.nonce = 'login' && data.retry){ self.showAlert('Error Associating the member', 'Please restart and try again'); return; }
+					if(self.nonce == 'login' && data.retry){ return self.showFailure('Error Associating the member', 'Please restart and try again'); }
+					
 					// if you retried and failed for whatever other reason... then dont continue retrying
-					if(data.retry){ self.showAlert('Error on Retry', response); return; }
+					if(data.retry){ return self.showFailure(parts, 'Error on Retry'); }
+					
 					// a nonce was not returned
-					if(parts[0] && parts[0].indexOf(self.member) != 0){ self.showAlert('Request Failed', response); return; }
+					if(newNonce && newNonce.indexOf(self.member) != 0){  return self.showFailure(response, 'Request Failed'); }
 					
 					// try logging in automatically and retrying the request if successful
 					self.nonce = 'login';				
@@ -83,9 +92,11 @@ var app = {
 		this.detailsURL = /^#employees\/(\d{1,})/;
 		this.registerEvents();
 		this.store = new LocalStorageStore(function(me) {
-			self.store = me;
+			// route to the desired activity at startup
 			self.route();
-			self.request({ x: self.member });
+			
+			// if the member is known log them in...			
+			if(app.member) self.request({ x: self.member });
 		});
 	}
 };

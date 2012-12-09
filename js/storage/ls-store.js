@@ -1,5 +1,12 @@
 var LocalStorageStore = function(successCallback, errorCallback) {
 
+    this.saveItem = function(name, value) {
+        window.localStorage.setItem(name, value);
+	}
+    this.getItem = function(name, value) {
+		return window.localStorage.getItem(name) || value || null;
+	}
+	
     this.findByName = function(searchKey, callback) {
         var employees = JSON.parse(window.localStorage.getItem("employees"));
         var results = employees.filter(function(element) {
@@ -10,6 +17,14 @@ var LocalStorageStore = function(successCallback, errorCallback) {
         callLater(callback, results);
     }
 
+    this.add = function(element) {
+        var employees = JSON.parse(window.localStorage.getItem("employees"));
+		employees.last = ((employees.last || employees.length) - 1) + 2;
+		element.id = employees.last;
+		employees.push(element);
+		window.localStorage.setItem("employees", JSON.stringify(employees));
+	}
+	
     this.findById = function(id, callback) {
         var employees = JSON.parse(window.localStorage.getItem("employees"));
         var employee = null;
@@ -32,9 +47,12 @@ var LocalStorageStore = function(successCallback, errorCallback) {
     }
 
     var employees = [
-		{"id": 1, "firstName": "Digicel Credit", "lastName": "ddtu", "title":"Topup", "managerId": 0, "city":"JM", "cellPhone":"", "officePhone":"", "email":""},
-		{"id": 2, "firstName": "Lime Credit", "lastName": "ldtu", "title":"Topup", "managerId": 0, "city":"JM", "cellPhone":"", "officePhone":"", "email":""},
-		{"id": 3, "firstName": "Flow Bill", "lastName": "flow", "title":"Payment", "managerId": 0, "city":"JM", "cellPhone":"", "officePhone":"", "email":""},
+		{"id": 1, "nickname": "Digicel Credit", "sku": "ddtu", "group":"Topup", "amount":"", "data" : ""},
+		{"id": 2, "nickname": "Lime Credit", "sku": "ddtu", "group":"Topup", "amount":"", "data" : ""},
+		{"id": 3, "nickname": "Digicel Bill", "sku": "digicel", "group":"Bill Payment", "amount":"", "data" : "", "customer" : " "},
+		{"id": 4, "nickname": "JPS Bill", "sku": "jps", "group":"Bill Payment", "amount":"", "data" : "", "customer" : " "},
+		{"id": 5, "nickname": "Flow Bill", "sku": "flow", "group":"Bill Payment", "amount":"", "data" : "", "customer" : " "},
+		{"id": 6, "nickname": "NWC Bill", "sku": "nwc", "group":"Bill Payment", "amount":"", "data" : "", "customer" : " "}
     ];
     var employees2 = [
             {"id": 1, "firstName": "Ryan", "lastName": "Howard", "title":"Vice President, North East", "managerId": 0, "city":"New York, NY", "cellPhone":"212-999-8888", "officePhone":"212-999-8887", "email":"ryan@dundermifflin.com"},
@@ -54,7 +72,8 @@ var LocalStorageStore = function(successCallback, errorCallback) {
             {"id": 15, "firstName": "Toby", "lastName": "Flenderson", "title":"Human Resources", "managerId": 1, "city":"Scranton, PA", "cellPhone":"570-485-8554", "officePhone":"570-699-5577", "email":"toby@dundermifflin.com"}
         ];
 
-    window.localStorage.setItem("employees", JSON.stringify(employees));
+	var existed = window.localStorage.getItem("employees");
+	if(!existed) window.localStorage.setItem("employees", JSON.stringify(employees));
 
     callLater(successCallback, this);
 }

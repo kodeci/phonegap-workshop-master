@@ -8,7 +8,9 @@
 <script id="home-tpl" type="text/x-handlebars-template">
     <div class='header'>
 		<h1>
-		TopupApp <input class="member" type="tel" placeholder="member" /> <input class="pin" type="password" placeholder="pin" />
+		TopupApp 
+		<input class="member" type="tel" placeholder="member" value="{{member}}" /> 
+		<input class="pin" type="password" placeholder="pin" value = "{{pin}}" />
 		</h1>
 	</div>
     <div class='search-bar'><input class='search-key' type="search"/></div>
@@ -17,25 +19,24 @@
 
 <script id="employee-li-tpl" type="text/x-handlebars-template">
     {{#.}}
-    <li><a href="#employees/{{this.id}}">{{firstName}} {{this.lastName}}<br/>{{this.title}}</a></li>
+    <li><a href="#employees/{{id}}">{{nickname}} {{#if data}}({{data}}){{/if}}<br/>{{group}}</a></li>
     {{/.}}
 </script>
 
 <script id="employee-tpl" type="text/x-handlebars-template">
     <div class='header'>
 		<a href='#' class="button header-button header-button-left">Back</a>
-		<h1>Details</h1>
-		<a href='javascript:return false;' class="button header-button header-button-right kGo">Go</a>
+		<h1>Transaction</h1>
+		<a href='javascript:false;' class="button header-button header-button-right kGo">Go</a>
 	</div>
     <div class='details'>
-        <!-- <img class='employee-image' src='img/{{firstName}}_{{lastName}}.jpg' /> -->
-        <h1>{{firstName}}</h1>
-        <h2>{{title}}</h2>
-        <!-- <span class="location"></span> -->
+        <h1 class="nickname editable text"><span>{{nickname}}</span></h1>
+        <h2>{{group}}</h2>
         <ul>
-            <li><a href="tel:{{officePhone}}">Call Office<br/>{{officePhone}}</a></li>
-            <li><a href="tel:{{cellPhone}}">Call Cell<br/>{{cellPhone}}</a></li>
-            <li><a href="sms:{{cellPhone}}">SMS<br/>{{cellPhone}}</a></li>
+            {{#unless pin}}<li class="pin editable">PIN <span style="display:none"></span></li>{{/unless}}
+            <li class="data editable text">Recipient <span>{{data}}</span></li>
+            <li class="amount editable">Amount <span>{{amount}}</span></li>
+            {{#if customer}}<li class="customer editable">Customer <span>{{customer}}<span></li>{{/if}}
         </ul>
     </div>
 </script>
