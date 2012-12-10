@@ -1,3 +1,5 @@
+if(!console) console = { log : function(){} };
+
 var app = {
     showFailure: function (message, title) {
 		setTimeout(function(){ app.showAlert(message, title); });
