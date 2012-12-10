@@ -38,12 +38,13 @@ var EmployeeView = function(model) {
 		
 		if(input.length == 0){ 
 			input = $('<input />');
-			input.type = node.is('text') ? 'text' : 'numeric';
+			input.type = node.is('.text') ? 'text' : 'number';
 			input.val( span.text());
 			node.append(input);
 		}
 		
 		span.text( input.val() );
+		input[0].focus();
 	};
 	
 	this.go = function(e) {

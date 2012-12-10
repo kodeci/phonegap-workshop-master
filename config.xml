@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <widget xmlns       = "http://www.w3.org/ns/widgets"
         xmlns:gap   = "http://phonegap.com/ns/1.0"
-        id          = "com.kodeci.phonegapworkshop"
+        id          = "com.softwarearchitectsjm.topupapp"
         versionCode = "10"
         version     = "1.1.0">
             
     <icon src="icon.png" />
-    <name>Employee Directory</name>
+    <name>TopupApp</name>
  
-    <description>A simple employee directory application</description>
+    <description>Crossover topup and bill payment application</description>
  
     <author href="http://kodeci.dyndns.tv" email="icymint3@gmail.com">Andrew Hall</author>
  
-    <feature name="http://api.phonegap.com/1.0/contacts"/>
     <feature name="http://api.phonegap.com/1.0/network"/>
-    <feature name="http://api.phonegap.com/1.0/notification"/>
     <feature name="http://api.phonegap.com/1.0/file"/>
-            
+	
     <!-- 
+    <feature name="http://api.phonegap.com/1.0/notification"/>
+    <feature name="http://api.phonegap.com/1.0/contacts"/>
     <feature name="http://api.phonegap.com/1.0/camera"/>
     <feature name="http://api.phonegap.com/1.0/geolocation"/>
     <feature name="http://api.phonegap.com/1.0/media"/>
