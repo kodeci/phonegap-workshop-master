@@ -23,6 +23,12 @@
     {{/.}}
 </script>
 
+<script id="confirm-tpl" type="text/x-handlebars-template">
+    <span class="msg">{{text}}</span><span class="code">{{code}}</span><br />
+	<input type="tel" class="confirm" placeholder="confirm code" />
+	<a href='javascript:false;' class="button header-button header-button-right kConfirm">Confirm</a>
+</script>
+
 <script id="employee-tpl" type="text/x-handlebars-template">
     <div class='header'>
 		<a href='javascript:history.back()' class="button header-button header-button-left kBack">Back</a>
@@ -35,8 +41,9 @@
             {{#unless pin}}<li class="pin editable">PIN <span style="display:none"></span> </li>{{/unless}}
             <li class="data editable text">Account <span>{{data}}</span> </li>
             <li class="amount editable">Amount <span>{{amount}}</span> </li>
-            {{#if customer}}<li class="customer editable">Customer <span>{{customer}}<span> </li>{{/if}}
+            {{#if customer}}<li class="customer editable tel">Customer <span>{{customer}}<span> </li>{{/if}}
         </ul>
+		<div class="response"></div>
     </div>
 </script>
 
