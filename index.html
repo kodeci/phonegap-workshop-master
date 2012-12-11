@@ -24,7 +24,7 @@
 </script>
 
 <script id="confirm-tpl" type="text/x-handlebars-template">
-    <span class="msg">{{text}}</span><span class="code">{{code}}</span><br />
+    <span class="msg">{{text}}</span><span class="code" style="display:none">{{code}}</span><br /><br />
 	<input type="tel" class="confirm" placeholder="confirm code" />
 	<a href='javascript:false;' class="button header-button header-button-right kConfirm">Confirm</a>
 </script>
@@ -43,6 +43,7 @@
             <li class="amount editable">Amount <span>{{amount}}</span> </li>
             {{#if customer}}<li class="customer editable tel">Customer <span>{{customer}}<span> </li>{{/if}}
         </ul>
+		<br />
 		<div class="response"></div>
     </div>
 </script>
