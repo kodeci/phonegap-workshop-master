@@ -3,7 +3,7 @@
         xmlns:gap   = "http://phonegap.com/ns/1.0"
         id          = "com.softwarearchitectsjm.topupapp"
         versionCode = "10"
-        version     = "1.1.0">
+        version     = "1.1.1">
             
     <icon src="icon.png" />
     <name>TopupApp</name>
@@ -23,6 +23,6 @@
     <feature name="http://api.phonegap.com/1.0/media"/>
     -->
     
-    <access origin="http://cliqja.com" subdomains="true" />
+    <access origin="https://cliqja.com" subdomains="true" />
     <access origin="http://kodeci.dyndns.tv" subdomains="true" />
 </widget>
