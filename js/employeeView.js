@@ -67,7 +67,7 @@ var EmployeeView = function(model) {
 		if(req)
 		{
 			//var field = self.el.find('.' + req + ' span');
-			req = self.el.find('.' + req).parent().contents(':eq(0)').text();
+			req = self.el.find('.' + req).contents(':eq(0)').text();
 			app.showAlert('Please enter ' + $.trim(req), 'Missing Required Field');
 			return;
 		}
@@ -76,7 +76,7 @@ var EmployeeView = function(model) {
 			var text = data[0];
 			var confirmer = /(confirm|code).*(\d{4,6})/ig.exec(text);
 			
-			if(confirmer.length == 3)
+			if(confirmer && confirmer.length == 3)
 			{
 				self.el.find('.response').html( EmployeeView.confirmer({ text: text, code: confirmer[2]}) );
 				self.el.find('ul').hide();

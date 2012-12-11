@@ -57,8 +57,8 @@ var app = {
 		data.nonce = self.nonce;
 		
 		$.ajax({type:'POST', url:self.service, data:data, crossDomain: true })
-			.fail(function() { alert("error"); })
-			.done(function(res) { console.log(res); })
+			.fail(function(e) { self.showFailure(e, "Error"); })
+			//.done(function(res) { console.log(res); })
 			.done(function(response){
 				var parts = response.split('\n');
 				// the new nonce should be the first item... remove it
