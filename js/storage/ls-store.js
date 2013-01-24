@@ -60,6 +60,7 @@ var LocalStorageStore = function(successCallback, errorCallback) {
     }
 
     var employees = [
+		{"id": 7, "nickname": "Fund Transfer", "sku": "xfer", "group":"Transfer", "amount":"", "data" : ""},
 		{"id": 1, "nickname": "Digicel Credit", "sku": "ddtu", "group":"Topup", "amount":"", "data" : ""},
 		{"id": 2, "nickname": "Lime Credit", "sku": "ldtu", "group":"Topup", "amount":"", "data" : ""},
 		{"id": 3, "nickname": "Digicel Bill", "sku": "digicel", "group":"Bill Payment", "amount":"", "data" : "", "customer" : " "},

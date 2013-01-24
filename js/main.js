@@ -33,10 +33,15 @@ var app = {
 			});
 		}
 		
+        $('body').on('click', '.editable', $.proxy(self.editMode, self) );
 		$(window).on('hashchange', $.proxy(this.route, this));
+	},
+	editMode: function() {
+		
 	},
 	route: function() {
 		var hash = window.location.hash;
+		$('input:focus').each( function(){ this.blur(); });
 		if (!hash) {
 			$('body').html(new HomeView(this.store).render().el);
 			return;
@@ -49,7 +54,7 @@ var app = {
 		}
 	},
 	nonce: 'login',
-	member: '8767993139',
+	member: '',
 	pin:'',
 	service: window.location.href.indexOf('kodeci') > 0 ? 'http://kodeci.dyndns.tv:8085/xodev/m.ashx' : 'https://cliqja.com/m.ashx',
 	request: function(data, responder) {
@@ -102,5 +107,9 @@ var app = {
 		});
 	}
 };
+
+Handlebars.registerHelper('cssise', function(val) {
+  return val ? val.toString().replace(/\s/,'').toLowerCase() : '';
+});
 
 app.initialize();

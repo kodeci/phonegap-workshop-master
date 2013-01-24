@@ -1,8 +1,11 @@
 var EmployeeView = function(model) {
 	
 	this.render = function() {
-		var viewModel = $.extend({ pin: app.pin ? "****" : false }, model);
-		this.el.html(EmployeeView.template(viewModel));
+		var self = this, viewModel = $.extend({ pin: app.pin ? "****" : false }, model);
+		
+		this.el.html(EmployeeView.template(viewModel));		
+        this.el.find('ul .editable').each(function(){ self.editMode({}, this);} ); // place everything in edit mode
+		setTimeout(function(){ $(':input:eq(0)')[0].focus(); }); // focus the first input element
 		return this;
 	};
 
@@ -28,9 +31,9 @@ var EmployeeView = function(model) {
 		node.toggleClass('edit-mode');
 	};
 	
-	this.editMode = function(e) {
+	this.editMode = function(e, el) {
 		console.log('change-mode');
-		var node = $(e.currentTarget);
+		var node = $(el || e.currentTarget);
 		var input = node.find('input');
 		var span = node.find('span');
 		
@@ -40,7 +43,7 @@ var EmployeeView = function(model) {
 		
 		if(input.length == 0){ 
 			input = $('<input />');
-			input.type = node.is('.text') ? 'text' : node.is('.tel') ? 'tel' : 'number';
+			input.attr('type', node.is('.text') ? 'text' : node.is('.tel') ? 'tel' : node.is('.pin') ? /*'password'*/ 'tel' : 'number');
 			input.val( span.text());
 			node.append(input);
 		}
@@ -52,7 +55,7 @@ var EmployeeView = function(model) {
 	this.go = function(e) {
 		console.log('kGo');
 		var self = this;
-		var cmd = model.group.toLowerCase() == 'topup' ? 'buy :pin :sku :amount :data' : 'pay :pin :sku :data :amount &customer';
+		var cmd = model.group.toLowerCase() == 'topup' ? 'buy :pin :sku :amount :data' : model.group.toLowerCase() == 'transfer' ? 'send :pin :data :amount' : 'pay :pin :sku :data :amount &customer';
 		var req = null;
 		
 		cmd = cmd.replace(/(:|&)(\w+)/ig, function($0, $1, $2){ 
@@ -125,14 +128,14 @@ var EmployeeView = function(model) {
 			if( val != model[i]){ 
 				modified = true; 
 				model[i] = val; 
-				if(i == 'nickname') cloned = true;
+				if(i == 'nickname'){ cloned = true; model.cloned = 1; }
 			}
 		}
 		
 		if(modified)
 		{
 			if(cloned) app.store.add( model );
-			else app.store.edit( model );
+			else if(model.cloned) app.store.edit( model );
 		}
 	};
 
