@@ -15,11 +15,13 @@
 			email="icymint3@gmail.com"
 			rim:copyright="Copyright 2010-2013 Kodeci Inc.">Andrew Hall</author>
  
+	<!--
 	<rim:permissions>
 		<rim:permit>access_shared</rim:permit>
 		<rim:permit>access_location_services</rim:permit>
 		<rim:permit>use_camera</rim:permit>  
 	</rim:permissions>
+	-->
 
 	<!--
 	<icon src="icons/ios/icon.png" width="57" height="57" />
@@ -48,9 +50,11 @@
 
 	<content src="index.html" rim:allowInvokeParams="true"/>
  
+	<!--
 	<feature id="blackberry.ui.dialog"/>   
 	<feature id="blackberry.app.orientation"><param name="mode" value="portrait" /></feature>
 	<feature id="blackberry.app"><param name="backgroundColor" value="0xFFFF0000" /></feature>
+	-->
 
 	<feature name="http://api.phonegap.com/1.0/network"/>
 	<feature name="http://api.phonegap.com/1.0/file"/>
@@ -62,13 +66,16 @@
     <feature name="http://api.phonegap.com/1.0/media"/>
     -->
 
+	<!--
 	<access uri="https://cliqja.com" subdomains="true">
 		<feature id="blackberry.app" required="true" version="1.0.0"/>
 		<feature id="blackberry.invoke" required="true" version="1.0.0"/>
 	</access>
+	-->
     <access origin="https://cliqja.com" subdomains="true" />
     <access origin="http://kodeci.dyndns.tv" subdomains="true" />
 
+	<!--
 	<rim:connection timeout="25000">
 		<id>TCP_WIFI</id>
 		<id>MDS</id>
@@ -77,6 +84,7 @@
 		<id>WAP2</id>
 		<id>WAP</id>
 	</rim:connection>
+	-->
 
 	<license href="http://www.cliqja.com/">
     Copyright (c) 2013 Cliq.
