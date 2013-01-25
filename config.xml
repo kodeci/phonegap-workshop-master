@@ -42,8 +42,8 @@
 	-->
 
     <icon src="icon.png" />
-	<rim:splash src="splash-1280x768.png"/>
-	<rim:splash src="splash-768x1280.png"/>
+	<rim:splash src="img/splash-1280x768.png"/>
+	<rim:splash src="img/splash-768x1280.png"/>
 	<gap:splash src="splash.png" />
 
 	<content src="index.html" rim:allowInvokeParams="true"/>
