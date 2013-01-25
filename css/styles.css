@@ -12,15 +12,18 @@ body {
     overflow: hidden;
     position: relative;
 	background-image:url(../img/background.jpg);
+	background-size: 100% 100%;
 }
 
 .header {
     background: /*#666*/ Orange;
-    -webkit-background-size: 1px 44px;
+	background: Orange url(../img/transfade.png) repeat-x;
+	background-position: top left;
+    /*-webkit-background-size: 1px 44px;
     -moz-background-size: 1px 44px;
     -ms-background-size: 1px 44px;
     -o-background-size: 1px 44px;
-    background-size: 1px 44px;
+    background-size: 1px 44px;*/
     height: 44px;
     line-height: 44px;
     width: 100%;
@@ -42,6 +45,8 @@ body {
     -moz-box-flex: 1;
     box-flex: 1;
 }
+
+.details h1 { margin-bottom: 10px;}
 
 .header-button {
     position: absolute;
@@ -69,6 +74,12 @@ body {
     border-bottom: solid 1px #666;
 }
 input {  border-radius: 5px; }
+
+input:focus {
+	outline: none;
+	box-shadow: inset 0 2px 4px rgba(255,165,0,.5), 0 1px Orange;
+}
+
 input[type="search"] {
     width:100%;
 	border: none;
@@ -76,7 +87,7 @@ input[type="search"] {
 	padding: 4px 0px 2px 2px;
 	margin-top: 0px;
 	font-size: 18px;
-	box-shadow: inset 0 2px 2px rgba(0,0,0,.5), 0 1px #fff;
+	box-shadow: inset 0 2px 6px rgba(0,0,0,.5), 0 1px #fff;
 	background: #eee;
     -webkit-appearance:none;
 }
@@ -90,27 +101,12 @@ ul {
     margin: 0;
     padding: 0;
     list-style: none;
-    /*background-color: #fafafa;*/
-    border-bottom: 1px solid #e0e0e0;
 }
 
 li {
     display: block;
-    border-top: 1px solid #c0c0c0;
-    padding: 10px;
-}
-/*
-ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    background-color: #fff;
-    border-bottom: 1px solid #e0e0e0;
-}*/
-
-li {
-    display: block;
-    border-top: 1px solid #e0e0e0;
+	background: transparent url(../img/transfade.png) repeat-x;
+	background-position: top left;
     padding: 10px;
 }
 
@@ -133,13 +129,6 @@ li>a, .editable {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    background-position: -10px 0;
-    background-repeat: no-repeat;
-    -webkit-background-size: 10px 100%;
-    -moz-background-size: 10px 100%;
-    -ms-background-size: 10px 100%;
-    -o-background-size: 10px 100%;
-    background-size: 10px 100%;
 }
 
 li>a {
@@ -230,14 +219,14 @@ h2, .dim {
 ul { width:100%; }
 ul .editable input { display:inherit; margin-left: 10px;}
 ul .editable span { display: none; }
-ul .editable b { display: inline-block; width:90px;; }
-.billpayment, .topup, .transfer {
-	background-position: 2px center;
+ul .editable b { display: inline-block; width:90px; }
+
+.billpayment a, .topup a, .transfer a {
+	background-position: 10px center;
 	background-repeat: no-repeat;
-	background-size: 69px 56px;
-	/*padding: 15px 0px;*/
+	background-size: 60px 48px;
 }
 
-.billpayment { background-image: url(../img/billpayment_button.png); }
-.topup { background-image: url(../img/topup_button.png); }
-.transfer { background-image: url(../img/funds_transfer_button.png); }
+.billpayment a { background-image: url(../img/billpayment_button.png); }
+.topup a { background-image: url(../img/topup_button.png); }
+.transfer a { background-image: url(../img/funds_transfer_button.png); }
