@@ -1,8 +1,8 @@
 <html>
 	<head>
 		<link href="css/styles.css" rel="stylesheet" />
-		<script src="css/source-sans-pro.js"></script>
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+		<!-- <script src="css/source-sans-pro.js"></script> -->
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 		<title>CLIQ</title>
 	</head>
 <body>
@@ -14,11 +14,11 @@
 		<input class="pin" type="tel" placeholder="pin" value = "{{pin}}" />
 		</h1>
 	</div>
-    <div class='search-bar'><input class='search-key' type="search"/></div>
-    <div class="scroll"><ul class='employee-list'></ul></div>
+    <div class='search-bar'><input class='search-key' placeholder=" find an activity" type="search"/></div>
+    <div class="scroll"><ul class='action-list'></ul></div>
 </script>
 
-<script id="employee-li-tpl" type="text/x-handlebars-template">
+<script id="action-li-tpl" type="text/x-handlebars-template">
     {{#.}}
     <li class="{{cssise group}} {{cssise sku}}"><a href="#employees/{{id}}">{{nickname}} {{#if data}}({{data}}){{/if}}<br/>{{group}}</a></li>
     {{/.}}
@@ -33,7 +33,7 @@
 <script id="employee-tpl" type="text/x-handlebars-template">
     <div class='header'>
 		<a href='javascript:history.back()' class="button header-button header-button-left kBack">Back</a>
-		<h1>CLIQ: Transaction</h1>
+		<h1>CLIQ: Activity</h1>
 		<a href='javascript:false;' class="button header-button header-button-right kGo">Go</a>
 	</div>
     <div class='details'>
